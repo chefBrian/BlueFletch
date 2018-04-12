@@ -1,0 +1,15 @@
+<resources>
+    //CONSTANTS
+    <string name="app_name">BlueFletch</string>
+    <string name="login">Login</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="feed">Home</string>
+    <string name="logout">Logout</string>
+    <string name="post">Post</string>
+
+    <string name="login_preference">edu.brian.bluefletch_login_preference</string>
+    <string name="login_status_preference">edu.brian.bluefletch_login_stratus_preference</string>
+    <string name="user_info_preference">edu.brian.bluefletch_user_info_preference</string>
+
+</resources>
