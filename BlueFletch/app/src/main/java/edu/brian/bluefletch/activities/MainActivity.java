@@ -1,4 +1,4 @@
-package edu.brian.bluefletch;
+package edu.brian.bluefletch.activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -20,6 +20,10 @@ import java.net.CookieManager;
 import java.net.CookiePolicy;
 import java.util.HashMap;
 import java.util.Map;
+
+import edu.brian.bluefletch.config.PersistentCookieStore;
+import edu.brian.bluefletch.R;
+import edu.brian.bluefletch.config.SharedPreferenceConfig;
 
 public class MainActivity extends AppCompatActivity {
     private SharedPreferenceConfig preferenceConfig;

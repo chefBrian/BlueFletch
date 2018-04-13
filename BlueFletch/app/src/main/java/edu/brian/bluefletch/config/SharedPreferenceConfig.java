@@ -1,10 +1,12 @@
-package edu.brian.bluefletch;
+package edu.brian.bluefletch.config;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import org.json.JSONObject;
+
+import edu.brian.bluefletch.R;
 
 public class SharedPreferenceConfig {
 

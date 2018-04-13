@@ -1,4 +1,4 @@
-package edu.brian.bluefletch;
+package edu.brian.bluefletch.activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -23,12 +23,19 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import edu.brian.bluefletch.models.Post;
+import edu.brian.bluefletch.R;
+import edu.brian.bluefletch.config.SharedPreferenceConfig;
 
 public class FeedActivity extends AppCompatActivity {
 
     private SharedPreferenceConfig preferenceConfig;
+    private List<Post> postList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,7 +112,40 @@ public class FeedActivity extends AppCompatActivity {
     }
 
     public void setFeed(JSONArray feed){
-        JSONArray ok = feed;
+
+        for (int i = 0; i < feed.length(); i++) {
+            try{
+                //PARSE JSON
+                JSONObject feed_post = feed.getJSONObject(i);
+                String post_text = feed_post.getString("postText");
+                String createdDate = feed_post.getString("createdDate");
+
+                JSONObject postUser = feed_post.getJSONObject("postUser");
+                String username = postUser.getString("username");
+                String imageUrl = postUser.getString("imageUrl");
+
+                // TODO ADD COMMENTS
+                //JSONArray comments = post.getJSONArray("comments");
+
+                // CREATE POST OBJECT
+                Post post = new Post(post_text, createdDate, username, imageUrl);
+                postList.add(post);
+
+
+            }catch(Exception e){
+                Toast.makeText(this, "Error creating recycler view",Toast.LENGTH_SHORT).show();
+            }
+        }
+        setRvadapter(postList);
+    }
+
+    public void setRvadapter (List<Post> postl) {
+        List<Post> ok = postl;
+        /*
+        RvAdapter myAdapter = new RvAdapter(this,postl) ;
+        myrv.setLayoutManager(new LinearLayoutManager(this));
+        myrv.setAdapter(myAdapter);
+        */
     }
 
     public void post(View view){
