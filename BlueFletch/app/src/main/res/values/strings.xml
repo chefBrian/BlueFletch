@@ -7,6 +7,7 @@
     <string name="feed">Home</string>
     <string name="logout">Logout</string>
     <string name="post">Post</string>
+    <string name="post_text">Type a new post and press Post</string>
 
     <string name="login_preference">edu.brian.bluefletch_login_preference</string>
     <string name="login_status_preference">edu.brian.bluefletch_login_stratus_preference</string>
