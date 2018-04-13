@@ -43,8 +43,6 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(this,FeedActivity.class));
             finish();
         }
-
-
     }
 
     public void login(View view){

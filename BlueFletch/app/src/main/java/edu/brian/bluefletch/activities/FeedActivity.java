@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -28,6 +30,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import edu.brian.bluefletch.adapters.RecyclerViewAdapter;
 import edu.brian.bluefletch.models.Post;
 import edu.brian.bluefletch.R;
 import edu.brian.bluefletch.config.SharedPreferenceConfig;
@@ -36,12 +39,14 @@ public class FeedActivity extends AppCompatActivity {
 
     private SharedPreferenceConfig preferenceConfig;
     private List<Post> postList = new ArrayList<>();
+    private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feed);
 
+        recyclerView = findViewById(R.id.recyclerView);
         preferenceConfig = new SharedPreferenceConfig(getApplicationContext());
 
         getUserInfo();
@@ -123,12 +128,13 @@ public class FeedActivity extends AppCompatActivity {
                 JSONObject postUser = feed_post.getJSONObject("postUser");
                 String username = postUser.getString("username");
                 String imageUrl = postUser.getString("imageUrl");
+                String finalImage = "https://bfsharingapp.bluefletch.com" + imageUrl;
 
                 // TODO ADD COMMENTS
                 //JSONArray comments = post.getJSONArray("comments");
 
                 // CREATE POST OBJECT
-                Post post = new Post(post_text, createdDate, username, imageUrl);
+                Post post = new Post(post_text, createdDate, username, finalImage);
                 postList.add(post);
 
 
@@ -140,12 +146,10 @@ public class FeedActivity extends AppCompatActivity {
     }
 
     public void setRvadapter (List<Post> postl) {
-        List<Post> ok = postl;
-        /*
-        RvAdapter myAdapter = new RvAdapter(this,postl) ;
-        myrv.setLayoutManager(new LinearLayoutManager(this));
-        myrv.setAdapter(myAdapter);
-        */
+        RecyclerViewAdapter myadapter = new RecyclerViewAdapter(this,postl);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        recyclerView.setAdapter(myadapter);
     }
 
     public void post(View view){
