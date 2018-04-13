@@ -117,7 +117,7 @@ public class FeedActivity extends AppCompatActivity {
     }
 
     public void setFeed(JSONArray feed){
-
+        postList = new ArrayList<>();
         for (int i = 0; i < feed.length(); i++) {
             try{
                 //PARSE JSON
